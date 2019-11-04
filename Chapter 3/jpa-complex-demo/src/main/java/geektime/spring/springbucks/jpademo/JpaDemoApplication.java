@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 @EnableJpaRepositories
 @EnableTransactionManagement
 @Slf4j
-public class JpaDemoApplication implements ApplicationRunner {
+public class JpaDemoApplication /*implements ApplicationRunner*/ {
     @Autowired
     private CoffeeRepository coffeeRepository;
     @Autowired
@@ -40,12 +40,12 @@ public class JpaDemoApplication implements ApplicationRunner {
         SpringApplication.run(JpaDemoApplication.class, args);
     }
 
-    @Override
-    @Transactional
-    public void run(ApplicationArguments args) throws Exception {
-        initOrders();
-//        findOrders();
-    }
+//    @Override
+//    @Transactional
+//    public void run(ApplicationArguments args) throws Exception {
+//        initOrders();
+////        findOrders();
+//    }
 
     private void initOrders() {
         Coffee latte = Coffee.builder().name("latte")
