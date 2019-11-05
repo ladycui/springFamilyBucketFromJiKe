@@ -2,6 +2,7 @@ package geektime.spring.springbucks.jpademo.model;
 
 import lombok.Data;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -20,6 +21,11 @@ public class User {
     @NotNull(message = "name is null")
     String name;
 
-//    @NotEmpty(message = "parents is empty")
-//    List<Person> parents;
+
+    /**
+     * NotEmpty只能保证list非空，但里面元素是否为空不再校验
+     * 在元素前添加校验注解
+     */
+    @NotEmpty(message = "parents 不能为空")
+    List<@NotNull@Valid Person> parents;
 }

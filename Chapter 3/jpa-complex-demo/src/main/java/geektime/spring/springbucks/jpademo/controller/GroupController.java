@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -25,36 +26,39 @@ public class GroupController {
 
     /**
      * 只校验GroupA标注的参数
+     *
      * @param user
      * @param bindingResult
      * @return
      */
     @PostMapping(path = "/group/1")
-    public String group1(@Validated({GroupA.class}) User user, BindingResult bindingResult) {
+    public String group1(@RequestBody @Validated({GroupA.class}) User user, BindingResult bindingResult) {
         validateInput(bindingResult);
         return JSONObject.toJSONString(user);
     }
 
     /**
      * 只校验未分组的参数
+     *
      * @param user
      * @param bindingResult
      * @return
      */
     @PostMapping(path = "/group/2")
-    public String group2(@Validated({Default.class}) User user, BindingResult bindingResult) {
+    public String group2(@Validated({Default.class}) @RequestBody User user, BindingResult bindingResult) {
         validateInput(bindingResult);
         return JSONObject.toJSONString(user);
     }
 
     /**
      * 校验GroupA分组和Default的参数
+     *
      * @param user
      * @param bindingResult
      * @return
      */
     @PostMapping(path = "/group/3")
-    public String group3(@Validated({GroupA.class, Default.class}) User user, BindingResult bindingResult) {
+    public String group3(@Validated({GroupA.class, Default.class}) @RequestBody User user, BindingResult bindingResult) {
         validateInput(bindingResult);
         return JSONObject.toJSONString(user);
     }

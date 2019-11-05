@@ -8,6 +8,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -27,7 +28,6 @@ import java.util.List;
  * 2. bean校验；
  * 3. 处理异常（处理类exceptionHandler有@ControllerAdvice）；
  * 4. 配置validator，failFast机制
- * 5.
  */
 @RestController
 @Slf4j
@@ -66,7 +66,7 @@ public class TestController {
      * 此时返回数据格式是默认格式（很长很难看），推荐使用下面6的定制化返回异常信息。
      */
     @PostMapping("/test/get5")
-    public String testGet5(@Valid Person input) {
+    public String testGet5(@RequestBody @Valid Person input) {
         log.info("/test/get5, input: {}", JSONObject.toJSONString(input));
         return JSONObject.toJSONString(input);
     }
@@ -82,7 +82,7 @@ public class TestController {
      * @return
      */
     @PostMapping("/test/get6")
-    public String testGet6(@Validated Person input, BindingResult bindingResult) {//此处@Valid和@validated无差别
+    public String testGet6(@RequestBody @Validated Person input, BindingResult bindingResult) {//此处@Valid和@validated无差别
         log.info("/test/get6, input: {}", JSONObject.toJSONString(input));
         validateInput(bindingResult);
         return JSONObject.toJSONString(input);
