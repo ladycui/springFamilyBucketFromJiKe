@@ -13,7 +13,7 @@ import java.util.Set;
 /**
  * @Auther: cyn
  * @Date: 2019-11-04 11:13
- * @Description:
+ * @Description: 对controller中抛出的特定异常进行处理，e.g. 抛出ValidationException，返回bad request并能知道异常信息
  */
 @RestControllerAdvice
 public class ExceptionHanlder {
@@ -33,11 +33,11 @@ public class ExceptionHanlder {
         return exception.getMessage();
     }
 
-    @ExceptionHandler(IllegalStateException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String handleIllegalState(IllegalStateException exception) {
-        System.out.println(exception.getMessage());
-        return exception.getMessage();
-    }
+//    @ExceptionHandler(IllegalStateException.class)
+//    @ResponseStatus(HttpStatus.BAD_REQUEST)
+//    public String handleIllegalState(IllegalStateException exception) {
+//        System.out.println(exception.getMessage());
+//        return exception.getMessage();
+//    }
 
 }

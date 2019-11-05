@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 /**
  * @Auther: cyn
@@ -11,7 +12,7 @@ import javax.validation.constraints.NotNull;
  * @Description:
  */
 @Data
-public class InputObject {
+public class Person {
 
     @NotNull(message = "name 不能为空")
     String name;
